@@ -19,6 +19,7 @@
 #include <cstdlib>
 #include <string>
 #include <vector>
+#include <utility>
 
 #include "strings.h"
 
@@ -48,23 +49,26 @@ void ShowHelp () {
   std::cout << "5. Escribe en el fichero de salida el conjuto de sufijos de ";
   std::cout << "cada cadena." << std::endl;
 }
-
-std::vector<std::string> ManageFilein (std::string filein) {
-  std::ifstream input_file(filein);
-  if (!input_file.is_open()) {
-    std::cerr << "No se ha podido abrir el archivo ->" << filein << std::endl;
+ 
+/*
+  std::vector<std::string> ManageFilein (std::string filein) {
+    std::ifstream input_file(filein);
+    if (!input_file.is_open()) {
+      std::cerr << "No se ha podido abrir el archivo ->" << filein << std::endl;
+    }
+    std::vector<std::string> words;
+    std::string word;
+    int counter {0};
+    while(input_file >> word) {
+      words.push_back(word);
+    }
+    input_file.close();
+    return words;
   }
-  std::vector<std::string> words;
-  std::string word;
-  int counter {0};
-  while(input_file >> word) {
-    words.push_back(word);
-  }
-  input_file.close();
-  return words;
-}
+*/
 
-int CountFileLines (std::string filein) {
+/*
+  int CountFileLines (std::string filein) {
   std::ifstream input_file(filein);
   std::string lines;
   if (!input_file.is_open()) {
@@ -78,8 +82,16 @@ int CountFileLines (std::string filein) {
   input_file.close();
   return total_lines;
 }
+*/
 
-void ManageOpcode (int opcode, strings chain) {
+std::pair<std::string, std::string> SeparateStrings(std::string line) {
+  std::string chain = line.substr(0, line.find(" "));
+  std::string alphabet = line.substr(line.find(" ") + 1, line.length());
+  //metodo para comporbar que los simbolos esten iguales en la cadena y en el alfabeto
+  return std::make_pair(chain, alphabet);
+}
+
+void ManageOpcode (int opcode, Strings chain) {
   switch (opcode){
     case 1:
       chain.ShowAlphabet(chain);

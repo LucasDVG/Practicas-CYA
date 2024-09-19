@@ -17,14 +17,14 @@
 #include <iostream> 
 #include <string>
 
-class strings {
+class Strings {
  public:
   //Contructor
-  strings(std::string chain, std::string alphabet);
+  Strings(std::string chain, std::string alphabet);
   //Destructor
-  ~strings();
+  ~Strings();
   //Métodos
-  void ShowAlphabet(strings chain);
+  void ShowAlphabet(Strings chain);
   void ShowLength();
   void ShowReverse();
   void ShowPrefix();

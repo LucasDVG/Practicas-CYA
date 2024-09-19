@@ -14,13 +14,15 @@
 #include "../lib/strings.h"
 //#include "../lib/tools.h"
 
-strings::strings(std::string chain_input, std::string alphabet_input) {
+Strings::Strings(std::string chain_input, std::string alphabet_input) {
   chain_ = chain_input;
   alphabet_ = alphabet_input;
   chain_length_ = chain_input.length();
 }
 
-void strings::ShowAlphabet(strings chain) {
+Strings::~Strings() {}
+
+void Strings::ShowAlphabet(Strings chain) {
   std::cout << "{";
   for (int i{0}; i < alphabet_.length(); ++i) {
     if (i < alphabet_.length()) {
@@ -31,19 +33,18 @@ void strings::ShowAlphabet(strings chain) {
   std::cout << "}" << std::endl;
 }
 
-void strings::ShowLength() {
+void Strings::ShowLength() {
 
 }
 
-void strings::ShowReverse() {
+void Strings::ShowReverse() {
 
 }
 
-void strings::ShowPrefix() {
+void Strings::ShowPrefix() {
 
 }
 
-void strings::ShowSuffix() {
+void Strings::ShowSuffix() {
 
 }
-

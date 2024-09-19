@@ -22,11 +22,19 @@ int main (int argc, char* argv[]) {
   std::string help{argv[1]};
   if (argc == 4) {
     std::string filein = argv[1];
-    std::vector<std::string> drop_file {ManageFilein(filein)};
-    CountFileLines(filein);
-    strings chain(drop_file[1], drop_file[0]);
+    //std::vector<std::string> drop_file {ManageFilein(filein)};
+    //CountFileLines(filein);
     int opcode = std::stoi(argv[3]);
-    ManageOpcode(opcode, chain);
+    std::ifstream input_file(filein);
+    if (!input_file.is_open()) {
+      ShowErrorParameter(); //cambiar 
+    }
+    std::string line;
+    while (getline(input_file, line)) {
+      std::pair<std::string, std::string> string_pair = SeparateStrings(line);
+      Strings chain(string_pair.first, string_pair.second);
+      ManageOpcode(opcode, chain);
+    }
   } else if (argc == 2 && help == "--help") {
     ShowHelp();
     return 0;
