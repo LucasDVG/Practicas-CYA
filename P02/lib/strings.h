@@ -20,18 +20,19 @@
 class strings {
  public:
   //Contructor
-  strings();
+  strings(std::string chain, std::string alphabet);
   //Destructor
   ~strings();
   //Métodos
-  void ShowAlphabet();
+  void ShowAlphabet(strings chain);
   void ShowLength();
   void ShowReverse();
   void ShowPrefix();
   void ShowSuffix();
  private:
-  std::string alphabet;
-  std::string chain;
+  std::string alphabet_;
+  std::string chain_;
+  int chain_length_;
 };
 
 #endif //STRINGS_H

@@ -20,7 +20,9 @@
 #include <string>
 #include <vector>
 
-void ShowError () {
+#include "strings.h"
+
+void ShowErrorParameter () {
   std::cerr << "Error al inicializar el porgrama, utilice <nombre del ";
   std::cerr << "programa> --help, para saber como funciona" << std::endl;
 }
@@ -47,11 +49,7 @@ void ShowHelp () {
   std::cout << "cada cadena." << std::endl;
 }
 
-void CheckVariables () {
-
-}
-
-void ManageFilein (std::string filein) {
+std::vector<std::string> ManageFilein (std::string filein) {
   std::ifstream input_file(filein);
   if (!input_file.is_open()) {
     std::cerr << "No se ha podido abrir el archivo ->" << filein << std::endl;
@@ -62,10 +60,45 @@ void ManageFilein (std::string filein) {
   while(input_file >> word) {
     words.push_back(word);
   }
-  for (const auto &i : words) {
-    std::cout << i << std::endl;
+  input_file.close();
+  return words;
+}
+
+int CountFileLines (std::string filein) {
+  std::ifstream input_file(filein);
+  std::string lines;
+  if (!input_file.is_open()) {
+    std::cerr << "No se ha podido abrir el archivo -> " << filein << std::endl;
+    return -1;
+  }
+  int total_lines{0};
+  while (std::getline(input_file, lines)) {
+    total_lines++;
   }
   input_file.close();
+  return total_lines;
+}
+
+void ManageOpcode (int opcode, strings chain) {
+  switch (opcode){
+    case 1:
+      chain.ShowAlphabet(chain);
+      break;
+    case 2:
+      chain.ShowLength();
+      break;
+    case 3:
+      chain.ShowReverse();
+      break;
+    case 4:
+      chain.ShowPrefix();
+      break;
+    case 5:
+      chain.ShowSuffix();
+      break;
+    default:
+      break;
+  }
 }
 
 #endif //TOOLS_H

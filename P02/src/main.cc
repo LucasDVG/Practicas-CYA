@@ -22,34 +22,16 @@ int main (int argc, char* argv[]) {
   std::string help{argv[1]};
   if (argc == 4) {
     std::string filein = argv[1];
-    ManageFilein(filein);
-    std::string fileout = argv[2];
+    std::vector<std::string> drop_file {ManageFilein(filein)};
+    CountFileLines(filein);
+    strings chain(drop_file[1], drop_file[0]);
     int opcode = std::stoi(argv[3]);
-    switch (opcode){
-      case 1:
-        
-        break;
-      
-      case 2:
-
-        break;
-  
-      case 3:
-
-        break;
-  
-      case 4:
-      
-        break;
-  
-      default:
-        break;
-    }
+    ManageOpcode(opcode, chain);
   } else if (argc == 2 && help == "--help") {
     ShowHelp();
     return 0;
   } else if (argc > 4 || argc < 2) {
-    ShowError();
+    ShowErrorParameter();
     return 1;
   }
   return 0;

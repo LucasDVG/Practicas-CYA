@@ -14,12 +14,21 @@
 #include "../lib/strings.h"
 //#include "../lib/tools.h"
 
-strings::strings() {
-
+strings::strings(std::string chain_input, std::string alphabet_input) {
+  chain_ = chain_input;
+  alphabet_ = alphabet_input;
+  chain_length_ = chain_input.length();
 }
 
-void strings::ShowAlphabet() {
-
+void strings::ShowAlphabet(strings chain) {
+  std::cout << "{";
+  for (int i{0}; i < alphabet_.length(); ++i) {
+    if (i < alphabet_.length()) {
+      std::cout << ", ";
+    }
+    std::cout  << alphabet_[i];
+  }
+  std::cout << "}" << std::endl;
 }
 
 void strings::ShowLength() {
