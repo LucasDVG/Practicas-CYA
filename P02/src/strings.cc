@@ -167,16 +167,3 @@ void Strings::ShowSuffix(Strings chain, std::ofstream &output_file) {
     output_file << "}" << std::endl;
   }
 }
-
-void Strings::ShowPower(Strings chain, int power, std::ofstream &output_file) {
-  if (chain.getChain().length() == 1 && (!chain.getChain().find("&"))) {
-    output_file << "&" << std::endl;
-  } else if (chain.getChain().find("&")) {
-    for (int i{0}; i < power; ++i) {
-      for (unsigned j{0}; j < chain.getChain().length(); ++j) {
-        output_file << chain.getChain().at(j);
-      }
-    }
-    output_file << std::endl;
-  }
-}

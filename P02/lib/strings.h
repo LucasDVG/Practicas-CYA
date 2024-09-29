@@ -39,7 +39,6 @@ class Strings {
   void ShowReverse(Strings chain, std::ofstream &output_file);
   void ShowPrefix(Strings chain, std::ofstream &output_file);
   void ShowSuffix(Strings chain, std::ofstream &output_file);
-  void ShowPower(Strings chain, int power,std::ofstream &output_file);
   // Getters
   const std::string &getAlphabet();
   const std::string &getChain();

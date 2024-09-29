@@ -17,8 +17,32 @@
 #include <iostream>
 #include <string>
 
+#include "../lib/clients.h"
 #include "../lib/strings.h"
 #include "../lib/tools.h"
+
+/// @brief Muestra toda la información necesaria para que el usuario pueda manejar de forma correcta el programa.
+void ShowHelp() {
+  std::cout << "Este programa busca usar los conceptos básicos sobre los ";
+  std::cout << "símbolos, alfabetos y cadenas y lenguajes." << std::endl;
+  std::cout << std::endl;
+  std::cout << "Para ejecutar este programa tendrá que seguir el siguiente ";
+  std::cout << "orden al ejecutar ->" << std::endl;
+  std::cout << ":$ <nombre del programa> <nombre del archivo de entrada>.txt ";
+  std::cout << "<nombre del archivo de salida>.txt <número del 1 al 5, para ";
+  std::cout << "realizar una acción distinta>." << std::endl << std::endl;
+  std::cout << "Acciones del opcode: " << std::endl;
+  std::cout << "1. Escribe en el fichero de salida cada una de las cadenas.";
+  std::cout << std::endl;
+  std::cout << "2. Escribe en el fichero de salida las distintas logitudes de ";
+  std::cout << "cada cadena." << std::endl;
+  std::cout << "3. Escribe en el fichero de salida la inversa de cada cadena.";
+  std::cout << std::endl;
+  std::cout << "4. Escribe en el fichero de salida el conjunto de prefijos ";
+  std::cout << "correspondientes a cada cadena." << std::endl;
+  std::cout << "5. Escribe en el fichero de salida el conjuto de sufijos de ";
+  std::cout << "cada cadena." << std::endl;
+}
 
 /// @brief Main del programa, maneja los argumentos que se le pasan por línea de comandos y evita que algunos errores traspasen.
 /// @param argc
