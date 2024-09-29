@@ -1,34 +1,47 @@
 // Universidad de La Laguna
-// Escuela superior de Ingeniería y Tecnología 
+// Escuela superior de Ingeniería y Tecnología
 // Asignatura: Computabilidad y Algoritmia
 // Curso: 2º
 // Práctica 2: Cadenas y lenguajes
 // Autor: Lucas de Vera Gil
 // Correo: alu0101550145@ull.edu.es
 // Fecha: 19/09/2024
-// Archivo main.cc: 
+// Archivo tools.h:
 // Referencias:
 // Historial de revisiones
-//        18/09/2024 - Iniciación del proyecto (funciones básicas). 
+//        18/09/2024 - Iniciación del proyecto (funciones básicas).
+//        20/09/2024 - Se establecen las funciones de "Show(...)" y el manejo
+//                     del opcode en su totalidad.
+//        21/09/2024 - Simplifico la lectura del fichero "filein.txt".
 
 #ifndef TOOLS_H
 #define TOOLS_H
 
-#include <iostream>
-#include <fstream>
 #include <cstdlib>
+#include <fstream>
+#include <iostream>
 #include <string>
-#include <vector>
 #include <utility>
+#include <vector>
 
 #include "strings.h"
 
-void ShowErrorParameter () {
+/// @brief Mustra error cuando el programa no encuntra los parámetros necesarios para así hacer saber al usuario como usarlo.
+void ShowErrorParameter() {
   std::cerr << "Error al inicializar el porgrama, utilice <nombre del ";
   std::cerr << "programa> --help, para saber como funciona" << std::endl;
 }
 
-void ShowHelp () {
+/// @brief Muestra un error cuando el programa no consigue/encuentra el archivo que el usuario le a marcado.
+void ShowErrorFile() {
+  std::cerr << "Error al abrir el archivo, asegurese de la posción del ";
+  std::cerr << "archivo que quiere escribir." << std::endl;
+  std::cerr << "Para saber más inicialice el programa con <nombre del ";
+  std::cerr << "programa> --help";
+}
+
+/// @brief Muestra toda la información necesaria para que el usuario pueda manejar de forma correcta el programa.
+void ShowHelp() {
   std::cout << "Este programa busca usar los conceptos básicos sobre los ";
   std::cout << "símbolos, alfabetos y cadenas y lenguajes." << std::endl;
   std::cout << std::endl;
@@ -49,68 +62,41 @@ void ShowHelp () {
   std::cout << "5. Escribe en el fichero de salida el conjuto de sufijos de ";
   std::cout << "cada cadena." << std::endl;
 }
- 
-/*
-  std::vector<std::string> ManageFilein (std::string filein) {
-    std::ifstream input_file(filein);
-    if (!input_file.is_open()) {
-      std::cerr << "No se ha podido abrir el archivo ->" << filein << std::endl;
-    }
-    std::vector<std::string> words;
-    std::string word;
-    int counter {0};
-    while(input_file >> word) {
-      words.push_back(word);
-    }
-    input_file.close();
-    return words;
-  }
-*/
 
-/*
-  int CountFileLines (std::string filein) {
-  std::ifstream input_file(filein);
-  std::string lines;
-  if (!input_file.is_open()) {
-    std::cerr << "No se ha podido abrir el archivo -> " << filein << std::endl;
-    return -1;
-  }
-  int total_lines{0};
-  while (std::getline(input_file, lines)) {
-    total_lines++;
-  }
-  input_file.close();
-  return total_lines;
-}
-*/
-
+/// @brief Este método separa el la línea del archivo que acaba de leer, para así, separarlo en cadena y alfabeto.
+/// @param line
+/// @return Devuelve un pair, el cual contiene la separacion del string.
 std::pair<std::string, std::string> SeparateStrings(std::string line) {
   std::string chain = line.substr(0, line.find(" "));
   std::string alphabet = line.substr(line.find(" ") + 1, line.length());
-  //metodo para comporbar que los simbolos esten iguales en la cadena y en el alfabeto
   return std::make_pair(chain, alphabet);
 }
 
-void ManageOpcode (int opcode, Strings chain) {
-  switch (opcode){
+/// @brief Este método simplifica el uso del opcode y divide el funcionamiento del programa en distintas llamadas a varios métodos.
+/// @param opcode
+/// @param chain
+void ManageOpcode(int opcode, Strings chain, int power, std::ofstream &output_file) {
+  switch (opcode) {
     case 1:
-      chain.ShowAlphabet(chain);
+      chain.ShowAlphabet(chain, output_file);
       break;
     case 2:
-      chain.ShowLength();
+      chain.ShowLength(chain, output_file);
       break;
     case 3:
-      chain.ShowReverse();
+      chain.ShowReverse(chain, output_file);
       break;
     case 4:
-      chain.ShowPrefix();
+      chain.ShowPrefix(chain, output_file);
       break;
     case 5:
-      chain.ShowSuffix();
+      chain.ShowSuffix(chain, output_file);
       break;
+    case 6: 
+      chain.ShowPower(chain, power, output_file);
     default:
       break;
   }
 }
 
-#endif //TOOLS_H
+#endif  // TOOLS_H
