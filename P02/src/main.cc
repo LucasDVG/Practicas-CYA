@@ -49,7 +49,7 @@ void ShowHelp() {
 /// @param argv
 /// @return
 int main(int argc, char* argv[]) {
-  if (argc != 1) {
+  if (argc != 2) {
     std::string show_help = argv[1];
     if (argc <= 4 || argc >= 5) {
       std::string filein = argv[1];

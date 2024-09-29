@@ -28,4 +28,4 @@ void ManageOpcode(int opcode, Strings chain, int power, std::ofstream &output_fi
   }
 }
 
-#endif
+#endif //CLIENTS_H
